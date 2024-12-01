@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+builddir/
+
+# Input files 
+input/
