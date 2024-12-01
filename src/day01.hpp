@@ -14,6 +14,7 @@ inline size_t part1(const std::vector<std::string> &input) {
     size_t a, b;
     std::istringstream iss(line);
     iss >> a >> b;
+
     left[idx] = a;
     right[idx] = b;
   }
@@ -30,13 +31,14 @@ inline size_t part1(const std::vector<std::string> &input) {
 inline size_t part2(const std::vector<std::string> &input) {
   std::vector<int> left(input.size());
   std::unordered_map<int, size_t> right;
+  right.reserve(input.size());
 
   for (const auto &[idx, line] : std::ranges::views::enumerate(input)) {
     size_t a, b;
     std::istringstream iss(line);
     iss >> a >> b;
     left[idx] = a;
-    right[b] = right.contains(b) ? right[b] + 1 : 1u;
+    right[b] = right.contains(b) ? right[b] + 1u : 1u;
   }
 
   return std::ranges::fold_left(
