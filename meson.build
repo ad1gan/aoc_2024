@@ -8,6 +8,11 @@ project('aoc 2024',
                           ])
 cxx = meson.get_compiler('cpp')
 
+benchmark = dependency('benchmark')
+
 src_inc = include_directories('src/')
+benchmark_inc = include_directories('benchmark/')
 
 day01_exe = executable('day01', ['src/day01.cpp'], include_directories: src_inc)
+
+bench_exe = executable('all_benchmarks', ['benchmark/all.cpp'], include_directories: [src_inc, benchmark_inc], dependencies: benchmark)
