@@ -1,48 +1,36 @@
-#include "src/day01.hpp"
-#include "src/day02.hpp"
-#include "src/util/fileio.hpp"
-
+#include "benchmark/all.hpp"
 #include <benchmark/benchmark.h>
 
-static void day01_01(benchmark::State &state) {
-  const auto input = util::read_lines("input/day01.txt");
+class total_time_reporter : public benchmark::BenchmarkReporter {
+public:
+  benchmark::ConsoleReporter default_reporter;
+  double total_time_us;
 
-  for (auto _ : state)
-    day01::part1(input);
+  total_time_reporter() = default;
+
+  bool ReportContext(const Context &context) override {
+    return default_reporter.ReportContext(context);
+  }
+
+  void ReportRuns(const std::vector<Run> &report) override {
+    default_reporter.ReportRuns(report);
+
+    for (const auto &run : report) {
+      total_time_us += run.GetAdjustedRealTime();
+    }
+  }
+
+  void Finalize() override {
+    std::print("\n\033[31mTotal time of whole Advent of Code 2024: {:2f} us\n",
+               total_time_us);
+  }
+};
+
+int main(int argc, char **argv) {
+  benchmark::Initialize(&argc, argv);
+
+  total_time_reporter reporter;
+  benchmark::RunSpecifiedBenchmarks(&reporter);
+
+  return 0;
 }
-
-static void day01_02(benchmark::State &state) {
-  const auto input = util::read_lines("input/day01.txt");
-
-  for (auto _ : state)
-    day01::part2(input);
-}
-
-static void day02_01(benchmark::State &state) {
-  const auto input = util::read_lines("input/day01.txt");
-
-  for (auto _ : state)
-    day02::part1(input);
-}
-
-static void day02_02(benchmark::State &state) {
-  const auto input = util::read_lines("input/day01.txt");
-
-  for (auto _ : state)
-    day02::part2(input);
-}
-
-BENCHMARK(day01_01)
-    ->Name("AOC 2024 Day01 - Part 1")
-    ->Unit(benchmark::kMicrosecond);
-BENCHMARK(day01_02)
-    ->Name("AOC 2024 Day01 - Part 2")
-    ->Unit(benchmark::kMicrosecond);
-BENCHMARK(day02_01)
-    ->Name("AOC 2024 Day02 - Part 1")
-    ->Unit(benchmark::kMicrosecond);
-BENCHMARK(day02_02)
-    ->Name("AOC 2024 Day02 - Part 2")
-    ->Unit(benchmark::kMicrosecond);
-
-BENCHMARK_MAIN();
