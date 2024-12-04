@@ -21,4 +21,14 @@ inline std::vector<std::string> read_lines(std::string &&filename) {
   return res;
 }
 
+inline std::string read_line(const std::string &input_file) {
+  std::string res;
+
+  std::ifstream file_stream(input_file);
+  if (file_stream.is_open())
+    std::getline(file_stream, res);
+
+  return res;
+}
+
 } // namespace util
