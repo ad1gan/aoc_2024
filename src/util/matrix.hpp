@@ -58,6 +58,10 @@ template <typename T> struct matrix {
 
   matrix() = default;
 
+  inline T at_or_default(size_t i, size_t j) const noexcept {
+    return i < num_rows && j < num_cols ? this->operator()(i, j) : T{};
+  }
+
   inline const T &operator()(size_t i, size_t j) const noexcept {
     return data[i * num_cols + j];
   }
