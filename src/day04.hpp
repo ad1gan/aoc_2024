@@ -7,8 +7,10 @@ inline size_t part1(const util::matrix<char> &input) {
 
   const auto search_str = "XMAS";
 
-  const std::vector<std::pair<int, int>> dirs = {
-      {1, 0}, {-1, 0}, {0, 1}, {0, -1}, {1, 1}, {-1, -1}, {1, -1}, {-1, 1}};
+  // const std::array<std::pair<int, int>, 8u> dirs = {
+  const auto dirs = {std::pair{1, 0},  std::pair{-1, 0}, std::pair{0, 1},
+                     std::pair{0, -1}, std::pair{1, 1},  std::pair{-1, -1},
+                     std::pair{1, -1}, std::pair{-1, 1}};
 
   for (auto col = 0; col < static_cast<int>(input.num_cols); ++col)
     for (auto row = 0; row < static_cast<int>(input.num_rows); ++row)
