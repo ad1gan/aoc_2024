@@ -21,8 +21,8 @@ public:
   }
 
   void Finalize() override {
-    std::print("\n\033[31mTotal time of whole Advent of Code 2024: {:2f} us\n",
-               total_time_us);
+    std::print("\n\033[31mTotal time of whole Advent of Code 2024: {:2f} ms\n",
+               total_time_us / 1000.0);
   }
 };
 

@@ -1,6 +1,6 @@
 project('aoc 2024',
         'cpp',
-        version : '2024.3.0',
+        version : '2024.4.0',
         default_options : ['cpp_std=c++23',
                            'warning_level=3',
                            'debug=false',
