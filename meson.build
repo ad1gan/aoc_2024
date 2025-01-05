@@ -20,5 +20,6 @@ day01_exe = executable('day01', ['src/day01.cpp'], include_directories: src_inc,
 day02_exe = executable('day02', ['src/day02.cpp'], include_directories: src_inc, dependencies: deps)
 day03_exe = executable('day03', ['src/day03.cpp'], include_directories: src_inc, dependencies: deps)
 day04_exe = executable('day04', ['src/day04.cpp'], include_directories: src_inc, dependencies: deps)
+day05_exe = executable('day05', ['src/day05.cpp'], include_directories: src_inc, dependencies: deps)
 
 bench_exe = executable('benchmarks', ['benchmark/all.cpp'], include_directories: [src_inc, benchmark_inc], dependencies: benchmark)
