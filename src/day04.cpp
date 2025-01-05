@@ -16,7 +16,7 @@ int main() {
 
   const auto input = util::read_matrix("input/day04.txt");
   std::println("Part 1:\t\t {}", day04::part1(input));
-  // std::println("Part 2:\t\t {}", day04::part2(input));
+  std::println("Part 2:\t\t {}", day04::part2(input));
   std::println();
 
   return 0;
